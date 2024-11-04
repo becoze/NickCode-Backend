@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.becoze</groupId>
-    <artifactId>nickoj-back</artifactId>
+    <artifactId>nickcode-back</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>nickoj-back</name>
+    <name>nickcode-back</name>
     <properties>
         <java.version>1.8</java.version>
     </properties>

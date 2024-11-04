@@ -1,10 +1,10 @@
 # 数据库初始化
 
 -- 创建库
-create database if not exists nick_oj;
+create database if not exists nickcode;
 
 -- 切换库
-use nick_oj;
+use nickcode;
 
 -- 用户表
 create table if not exists user
