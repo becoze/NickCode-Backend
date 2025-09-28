@@ -1,24 +1,23 @@
 package com.becoze.nickcode.model.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Data;
 
 /**
  * Problem
+ *
  * @TableName problem
  */
-@TableName(value ="problem")
+@TableName(value = "problem")
 @Data
 public class Problem implements Serializable {
     /**
      * ID
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -52,6 +51,16 @@ public class Problem implements Serializable {
     private Integer acceptedNum;
 
     /**
+     * Number of likes / thumb up
+     */
+    private Integer thumbNum;
+
+    /**
+     * Number of favour / collection
+     */
+    private Integer favourNum;
+
+    /**
      * Judge Case (JSON array)
      */
     private String judgeCase;
@@ -62,9 +71,9 @@ public class Problem implements Serializable {
     private String judgeConfig;
 
     /**
-     * Id of the creator user
+     * Id of the user user
      */
-    private String creatorId;
+    private Long userId;
 
     /**
      * Creation Time
@@ -79,6 +88,7 @@ public class Problem implements Serializable {
     /**
      * Deleted Status
      */
+    @TableLogic
     private Integer isDelete;
 
     @TableField(exist = false)

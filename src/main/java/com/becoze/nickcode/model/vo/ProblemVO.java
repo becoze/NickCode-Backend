@@ -1,24 +1,25 @@
-package com.becoze.nickcode.model.entity;
+package com.becoze.nickcode.model.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import cn.hutool.json.JSONUtil;
+import com.becoze.nickcode.model.dto.problem.JudgeConfig;
+import com.becoze.nickcode.model.entity.Problem;
+import lombok.Data;
+import org.springframework.beans.BeanUtils;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
+import java.util.List;
 
 /**
  * Problem
+ *
  * @TableName problem
  */
-@TableName(value ="problem")
 @Data
-public class Problem implements Serializable {
+public class ProblemVO implements Serializable {
     /**
      * ID
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -34,12 +35,7 @@ public class Problem implements Serializable {
     /**
      * Problem tags (JSON array)
      */
-    private String tags;
-
-    /**
-     * Problem answer
-     */
-    private String answer;
+    private List<String> tags;
 
     /**
      * Total submitted
@@ -52,9 +48,9 @@ public class Problem implements Serializable {
     private Integer acceptedNum;
 
     /**
-     * Number of likes / thump up
+     * Number of likes / thumb up
      */
-    private Integer thumpNum;
+    private Integer thumbNum;
 
     /**
      * Number of favour / collection
@@ -62,19 +58,14 @@ public class Problem implements Serializable {
     private Integer favourNum;
 
     /**
-     * Judge Case (JSON array)
-     */
-    private String judgeCase;
-
-    /**
      * Judge Configuration (JSON Object)
      */
-    private String judgeConfig;
+    private JudgeConfig judgeConfig;
 
     /**
-     * Id of the creator user
+     * ID of the user
      */
-    private Long creatorId;
+    private Long userId;
 
     /**
      * Creation Time
@@ -87,10 +78,53 @@ public class Problem implements Serializable {
     private Date updateTime;
 
     /**
-     * Deleted Status
+     * Creator info
      */
-    private Integer isDelete;
+    private UserVO userVO;
 
-    @TableField(exist = false)
+    /**
+     * convert Object to VO
+     *
+     * @param problemVO
+     * @return
+     */
+    public static Problem voToObj(ProblemVO problemVO) {
+        if (problemVO == null) {
+            return null;
+        }
+
+        Problem problem = new Problem();
+        BeanUtils.copyProperties(problemVO, problem);
+        List<String> tagList = problemVO.getTags();
+        if (tagList != null) {
+            problem.setTags(JSONUtil.toJsonStr(tagList));
+        }
+
+        JudgeConfig vojudgeConfig = problemVO.getJudgeConfig();
+        if (vojudgeConfig != null) {
+            problem.setJudgeConfig(JSONUtil.toJsonStr(vojudgeConfig));
+        }
+        return problem;
+    }
+
+    /**
+     * convert VO to Object
+     *
+     * @param problem
+     * @return
+     */
+    public static ProblemVO objToVo(Problem problem) {
+        if (problem == null) {
+            return null;
+        }
+        ProblemVO problemVO = new ProblemVO();
+        BeanUtils.copyProperties(problem, problemVO);
+        List<String> tagList = JSONUtil.toList(problem.getTags(), String.class);
+        problemVO.setTags(tagList);
+        String judgeConfigStr = problem.getJudgeConfig();
+        problemVO.setJudgeConfig(JSONUtil.toBean(judgeConfigStr, JudgeConfig.class));
+        return problemVO;
+    }
+
     private static final long serialVersionUID = 1L;
 }
