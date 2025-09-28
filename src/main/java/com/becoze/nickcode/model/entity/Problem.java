@@ -18,6 +18,7 @@ public class Problem implements Serializable {
     /**
      * ID
      */
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
