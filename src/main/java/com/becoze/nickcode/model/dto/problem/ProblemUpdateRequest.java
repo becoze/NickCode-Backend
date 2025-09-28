@@ -7,30 +7,44 @@ import java.util.List;
 
 /**
  * 更新请求
- *
  */
 @Data
-public class PostUpdateRequest implements Serializable {
+public class ProblemUpdateRequest implements Serializable {
 
     /**
-     * id
+     * ID
      */
     private Long id;
 
     /**
-     * 标题
+     * Problem title
      */
     private String title;
 
     /**
-     * 内容
+     * Question content
      */
     private String content;
 
     /**
-     * 标签列表
+     * Problem tags (JSON array)
      */
     private List<String> tags;
+
+    /**
+     * Problem answer
+     */
+    private String answer;
+
+    /**
+     * Judge Case (JSON array)
+     */
+    private List<JudgeCase> judgeCase;
+
+    /**
+     * Judge Configuration (JSON Object)
+     */
+    private JudgeConfig judgeConfig;
 
     private static final long serialVersionUID = 1L;
 }

@@ -9,56 +9,41 @@ import java.util.List;
 
 /**
  * 查询请求
- *
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class PostQueryRequest extends PageRequest implements Serializable {
+public class ProblemQueryRequest extends PageRequest implements Serializable {
 
     /**
-     * id
+     * ID
      */
     private Long id;
 
     /**
-     * id
-     */
-    private Long notId;
-
-    /**
-     * 搜索词
-     */
-    private String searchText;
-
-    /**
-     * 标题
+     * Problem title
      */
     private String title;
 
     /**
-     * 内容
+     * Question content
      */
     private String content;
 
     /**
-     * 标签列表
+     * Problem tags (JSON array)
      */
     private List<String> tags;
 
     /**
-     * 至少有一个标签
+     * Problem answer
      */
-    private List<String> orTags;
+    private String answer;
 
     /**
-     * 创建用户 id
+     * Id of the user user
      */
     private Long userId;
 
-    /**
-     * 收藏用户 id
-     */
-    private Long favourUserId;
 
     private static final long serialVersionUID = 1L;
 }

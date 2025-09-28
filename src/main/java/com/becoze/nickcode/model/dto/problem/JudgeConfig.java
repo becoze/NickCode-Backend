@@ -3,18 +3,23 @@ package com.becoze.nickcode.model.dto.problem;
 import lombok.Data;
 
 /**
- * Judge Case
+ * Judge Config
  */
 @Data
-public class JudgeCase {
+public class JudgeConfig {
     /**
-     * Input Case
+     * Time Limit (ms)
      */
-    private String input;
+    private Long timeLimit;
 
     /**
-     * Output Case
+     * Memory Limit (KB)
      */
-    private String output;
+    private Long memoryLimit;
+
+    /**
+     * Stack Limit (KB)
+     */
+    private Long StackLimit;
 
 }
