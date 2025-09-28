@@ -1,30 +1,30 @@
-package com.becoze.nickcode.model.dto.post;
+package com.becoze.nickcode.model.dto.problemsubmit;
 
-import java.io.Serializable;
-import java.util.List;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
- * 创建请求
+ * Create new problem request
  *
  */
 @Data
-public class PostAddRequest implements Serializable {
+public class ProblemSubmitAddRequest implements Serializable {
 
     /**
-     * 标题
+     * Used programming language
      */
-    private String title;
+    private String language;
 
     /**
-     * 内容
+     * Submit user code
      */
-    private String content;
+    private String code;
 
     /**
-     * 标签列表
+     * Problem id
      */
-    private List<String> tags;
+    private Long problemId;
 
     private static final long serialVersionUID = 1L;
 }

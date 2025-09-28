@@ -1,25 +1,25 @@
-package com.becoze.nickcode.model.dto.problem;
+package com.becoze.nickcode.model.dto.problemsubmit;
 
 import lombok.Data;
 
 /**
- * Judge Config
+ * Judge result info
  */
 @Data
-public class JudgeConfig {
+public class JudgeInfo {
     /**
-     * Time Limit (ms)
+     * Return message
      */
-    private Long timeLimit;
+    private String message;
 
     /**
-     * Memory Limit (KB)
+     * Memory used (KB)
      */
-    private Long memoryLimit;
+    private Long memory;
 
     /**
-     * Stack Limit (KB)
+     * Time used (s)
      */
-    private Long StackLimit;
+    private Long time;
 
 }
