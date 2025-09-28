@@ -1,29 +1,34 @@
 package com.becoze.nickcode.model.enums;
 
+import com.sun.jna.Memory;
+import com.sun.org.apache.xalan.internal.xsltc.cmdline.Compile;
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.ObjectUtils;
 
 /**
- * 文件上传业务类型枚举
+ * Problem submit language Enum
  *
  */
-public enum FileUploadBizEnum {
+public enum ProblemSubmitLanguageEnum {
 
-    USER_AVATAR("用户头像", "user_avatar");
+    JAVA("java", "java"),
+    CPLUSPLUS("c++", "c++"),
+    GOLANG("goland", "goland");
 
     private final String text;
 
     private final String value;
 
-    FileUploadBizEnum(String text, String value) {
+    ProblemSubmitLanguageEnum(String text, String value) {
         this.text = text;
         this.value = value;
     }
 
     /**
-     * 获取值列表
+     * get all value
      *
      * @return
      */
@@ -32,16 +37,16 @@ public enum FileUploadBizEnum {
     }
 
     /**
-     * 根据 value 获取枚举
+     * get enum by value
      *
      * @param value
      * @return
      */
-    public static FileUploadBizEnum getEnumByValue(String value) {
+    public static ProblemSubmitLanguageEnum getEnumByValue(String value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
-        for (FileUploadBizEnum anEnum : FileUploadBizEnum.values()) {
+        for (ProblemSubmitLanguageEnum anEnum : ProblemSubmitLanguageEnum.values()) {
             if (anEnum.value.equals(value)) {
                 return anEnum;
             }

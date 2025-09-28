@@ -1,49 +1,52 @@
 package com.becoze.nickcode.model.enums;
 
+import co.elastic.clients.elasticsearch.nodes.Ingest;
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.ObjectUtils;
 
 /**
- * 用户角色枚举
+ * Problem Submit Enum
  *
  */
-public enum UserRoleEnum {
+public enum ProblemSubmitStatusEnum {
 
-    USER("用户", "user"),
-    ADMIN("管理员", "admin"),
-    BAN("被封号", "ban");
+    PENDING("Pending", 0),
+    PROCESSING("Processing", 1),
+    SUCCEED("Succeed", 2),
+    FAILED("Failed",3);
 
     private final String text;
 
-    private final String value;
+    private final Integer value;
 
-    UserRoleEnum(String text, String value) {
+    ProblemSubmitStatusEnum(String text, Integer value) {
         this.text = text;
         this.value = value;
     }
 
     /**
-     * 获取值列表
+     * get all values
      *
      * @return
      */
-    public static List<String> getValues() {
+    public static List<Integer> getValues() {
         return Arrays.stream(values()).map(item -> item.value).collect(Collectors.toList());
     }
 
     /**
-     * 根据 value 获取枚举
+     * get Enum By Value
      *
      * @param value
      * @return
      */
-    public static UserRoleEnum getEnumByValue(String value) {
+    public static ProblemSubmitStatusEnum getEnumByValue(Integer value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
-        for (UserRoleEnum anEnum : UserRoleEnum.values()) {
+        for (ProblemSubmitStatusEnum anEnum : ProblemSubmitStatusEnum.values()) {
             if (anEnum.value.equals(value)) {
                 return anEnum;
             }
@@ -51,7 +54,7 @@ public enum UserRoleEnum {
         return null;
     }
 
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
