@@ -10,10 +10,7 @@ import com.becoze.nickcode.common.ResultUtils;
 import com.becoze.nickcode.constant.UserConstant;
 import com.becoze.nickcode.exception.BusinessException;
 import com.becoze.nickcode.exception.ThrowUtils;
-import com.becoze.nickcode.model.dto.problem.ProblemAddRequest;
-import com.becoze.nickcode.model.dto.problem.ProblemEditRequest;
-import com.becoze.nickcode.model.dto.problem.ProblemQueryRequest;
-import com.becoze.nickcode.model.dto.problem.ProblemUpdateRequest;
+import com.becoze.nickcode.model.dto.problem.*;
 import com.becoze.nickcode.model.entity.Problem;
 import com.becoze.nickcode.model.entity.User;
 import com.becoze.nickcode.model.vo.ProblemVO;
@@ -60,6 +57,15 @@ public class ProblemController {
         List<String> tags = problemAddRequest.getTags();
         if (tags != null) {
             problem.setTags(JSONUtil.toJsonStr(tags));
+        }
+        // Convert judgeCase and judgeConfig into JSON strings and store them into the problem entity.
+        List<JudgeCase> judgeCase = problemAddRequest.getJudgeCase();
+        if (judgeCase != null) {
+            problem.setJudgeCase(JSONUtil.toJsonStr(judgeCase));
+        }
+        JudgeConfig judgeConfig = problemAddRequest.getJudgeConfig();
+        if (judgeConfig != null) {
+            problem.setJudgeConfig(JSONUtil.toJsonStr(judgeConfig));
         }
         problemService.validProblem(problem, true);
         User loginUser = userService.getLoginUser(request);
@@ -115,6 +121,15 @@ public class ProblemController {
         if (tags != null) {
             problem.setTags(JSONUtil.toJsonStr(tags));
         }
+        // Convert judgeCase and judgeConfig into JSON strings and store them into the problem entity.
+        List<JudgeCase> judgeCase = problemUpdateRequest.getJudgeCase();
+        if (judgeCase != null) {
+            problem.setJudgeCase(JSONUtil.toJsonStr(judgeCase));
+        }
+        JudgeConfig judgeConfig = problemUpdateRequest.getJudgeConfig();
+        if (judgeConfig != null) {
+            problem.setJudgeConfig(JSONUtil.toJsonStr(judgeConfig));
+        }
         // 参数校验
         problemService.validProblem(problem, false);
         long id = problemUpdateRequest.getId();
@@ -144,7 +159,7 @@ public class ProblemController {
     }
 
     /**
-     * 分页获取列表（仅管理员）
+     * 分页获取 problem 列表（仅管理员）
      *
      * @param problemQueryRequest
      * @return
@@ -221,6 +236,15 @@ public class ProblemController {
         List<String> tags = problemEditRequest.getTags();
         if (tags != null) {
             problem.setTags(JSONUtil.toJsonStr(tags));
+        }
+        // Convert judgeCase and judgeConfig into JSON strings and store them into the problem entity.
+        List<JudgeCase> judgeCase = problemEditRequest.getJudgeCase();
+        if (judgeCase != null) {
+            problem.setJudgeCase(JSONUtil.toJsonStr(judgeCase));
+        }
+        JudgeConfig judgeConfig = problemEditRequest.getJudgeConfig();
+        if (judgeConfig != null) {
+            problem.setJudgeConfig(JSONUtil.toJsonStr(judgeConfig));
         }
         // 参数校验
         problemService.validProblem(problem, false);
