@@ -1,74 +1,59 @@
 package com.becoze.nickcode.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.becoze.nickcode.model.dto.problem.JudgeConfig;
-import com.becoze.nickcode.model.entity.Problem;
+import com.becoze.nickcode.model.dto.problemsubmit.JudgeInfo;
+import com.becoze.nickcode.model.entity.ProblemSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
- * Problem
+ * Problem Submit
+ * VO (View Object)
  *
  * @TableName problem
  */
 @Data
-public class ProblemVO implements Serializable {
+public class ProblemSubmitVO implements Serializable {
     /**
      * ID
      */
     private Long id;
 
     /**
-     * Problem title
+     * Programming language
      */
-    private String title;
+    private String language;
 
     /**
-     * Question content
+     * Code submitted by user
      */
-    private String content;
+    private String code;
 
     /**
-     * Problem tags (JSON array)
+     * Judge result (JSON Object)
      */
-    private List<String> tags;
+    private JudgeInfo judgeInfo;
 
     /**
-     * Total submitted
+     * Judge status (0-pending, 1-processing, 2-success, 3-fail)
      */
-    private Integer submitNum;
+    private Integer status;
 
     /**
-     * Total accepted
+     * Problem id
      */
-    private Integer acceptedNum;
+    private Long problemId;
 
     /**
-     * Number of likes / thumb up
-     */
-    private Integer thumbNum;
-
-    /**
-     * Number of favour / collection
-     */
-    private Integer favourNum;
-
-    /**
-     * Judge Configuration (JSON Object)
-     */
-    private JudgeConfig judgeConfig;
-
-    /**
-     * ID of the user
+     * ID of the creator user
      */
     private Long userId;
 
     /**
-     * Creation Time
+     * Creation time
      */
     private Date createTime;
 
@@ -78,52 +63,50 @@ public class ProblemVO implements Serializable {
     private Date updateTime;
 
     /**
-     * Creator info
+     * The User/owner who submit the problem
      */
     private UserVO userVO;
 
     /**
+     * Problem
+     */
+    private ProblemVO problemVO;
+
+    /**
      * convert Object to VO
      *
-     * @param problemVO
+     * @param problemSubmitVO
      * @return
      */
-    public static Problem voToObj(ProblemVO problemVO) {
-        if (problemVO == null) {
+    public static ProblemSubmit voToObj(ProblemSubmitVO problemSubmitVO) {
+        if (problemSubmitVO == null) {
             return null;
         }
 
-        Problem problem = new Problem();
-        BeanUtils.copyProperties(problemVO, problem);
-        List<String> tagList = problemVO.getTags();
-        if (tagList != null) {
-            problem.setTags(JSONUtil.toJsonStr(tagList));
+        ProblemSubmit problemSubmit = new ProblemSubmit();
+        BeanUtils.copyProperties(problemSubmitVO, problemSubmit);
+        JudgeInfo judgeInfoObj = problemSubmitVO.getJudgeInfo();
+        if (judgeInfoObj != null) {
+            problemSubmit.setJudgeInfo(JSONUtil.toJsonStr(judgeInfoObj));
         }
-
-        JudgeConfig vojudgeConfig = problemVO.getJudgeConfig();
-        if (vojudgeConfig != null) {
-            problem.setJudgeConfig(JSONUtil.toJsonStr(vojudgeConfig));
-        }
-        return problem;
+        return problemSubmit;
     }
 
     /**
      * convert VO to Object
      *
-     * @param problem
+     * @param problemSubmit
      * @return
      */
-    public static ProblemVO objToVo(Problem problem) {
-        if (problem == null) {
+    public static ProblemSubmitVO objToVo(ProblemSubmit problemSubmit) {
+        if (problemSubmit == null) {
             return null;
         }
-        ProblemVO problemVO = new ProblemVO();
-        BeanUtils.copyProperties(problem, problemVO);
-        List<String> tagList = JSONUtil.toList(problem.getTags(), String.class);
-        problemVO.setTags(tagList);
-        String judgeConfigStr = problem.getJudgeConfig();
-        problemVO.setJudgeConfig(JSONUtil.toBean(judgeConfigStr, JudgeConfig.class));
-        return problemVO;
+        ProblemSubmitVO problemSubmitVO = new ProblemSubmitVO();
+        BeanUtils.copyProperties(problemSubmit, problemSubmitVO);
+        String judgeInfoStr = problemSubmit.getJudgeInfo();
+        problemSubmitVO.setJudgeInfo(JSONUtil.toBean(judgeInfoStr, JudgeInfo.class));
+        return problemSubmitVO;
     }
 
     private static final long serialVersionUID = 1L;
