@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * Create new problem request
- *
+ * Dto (Data Transfer Object)
  */
 @Data
 public class ProblemSubmitAddRequest implements Serializable {

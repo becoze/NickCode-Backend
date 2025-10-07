@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * Create new submitted-problem request
+ * Dto (Data Transfer Object)
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
