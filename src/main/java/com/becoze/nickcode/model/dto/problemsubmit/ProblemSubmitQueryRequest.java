@@ -1,30 +1,37 @@
 package com.becoze.nickcode.model.dto.problemsubmit;
 
+import com.becoze.nickcode.common.PageRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
 /**
- * Create new problem request
- *
+ * Create new submitted-problem request
  */
 @Data
-public class ProblemSubmitAddRequest implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class ProblemSubmitQueryRequest extends PageRequest implements Serializable {
 
     /**
-     * Used programming language
+     * Programming language
      */
     private String language;
 
     /**
-     * Submit user code
+     * Code submitted by user
      */
-    private String code;
+    private Integer status;
 
     /**
      * Problem id
      */
     private Long problemId;
+
+    /**
+     * User id
+     */
+    private Long userId;
 
     private static final long serialVersionUID = 1L;
 }

@@ -12,12 +12,12 @@ import java.io.Serializable;
 public class ProblemSubmitAddRequest implements Serializable {
 
     /**
-     * Used programming language
+     * Programming language
      */
     private String language;
 
     /**
-     * Submit user code
+     * Code submitted by user
      */
     private String code;
 
