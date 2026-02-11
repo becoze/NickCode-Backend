@@ -20,6 +20,6 @@ public class JudgeConfig {
     /**
      * Stack Limit (KB)
      */
-    private Long StackLimit;
+    private Long stackLimit;
 
 }
