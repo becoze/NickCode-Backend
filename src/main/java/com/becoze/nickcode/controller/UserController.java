@@ -115,12 +115,12 @@ public class UserController {
             String unionId = userInfo.getUnionId();
             String mpOpenId = userInfo.getOpenid();
             if (StringUtils.isAnyBlank(unionId, mpOpenId)) {
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "Login fail, System Error");
             }
             return ResultUtils.success(userService.userLoginByMpOpen(userInfo, request));
         } catch (Exception e) {
             log.error("userLoginByWxOpen error", e);
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "登录失败，系统错误");
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "Login fail, System Error");
         }
     }
 
