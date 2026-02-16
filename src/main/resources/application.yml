@@ -99,3 +99,6 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.becoze.nickcode.controller
+# Code Sandbox config
+codesandbox:
+  codeSandboxName: DemoCodeSandbox # DemoCodeSandbox, RemoteCodeSandbox, ThirdPartyCodeSandbox
