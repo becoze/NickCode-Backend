@@ -1,4 +1,4 @@
-package com.becoze.nickcode.judeg.codesandbox.model;
+package com.becoze.nickcode.judge.codesandbox.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

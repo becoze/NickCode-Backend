@@ -1,8 +1,8 @@
-package com.becoze.nickcode.judeg.codesandbox;
+package com.becoze.nickcode.judge.codesandbox;
 
-import com.becoze.nickcode.judeg.codesandbox.impl.DemoCodeSandbox;
-import com.becoze.nickcode.judeg.codesandbox.model.ExecuteCodeRequest;
-import com.becoze.nickcode.judeg.codesandbox.model.ExecuteCodeResponse;
+import com.becoze.nickcode.judge.codesandbox.impl.DemoCodeSandbox;
+import com.becoze.nickcode.judge.codesandbox.model.ExecuteCodeRequest;
+import com.becoze.nickcode.judge.codesandbox.model.ExecuteCodeResponse;
 import com.becoze.nickcode.model.enums.ProblemSubmitLanguageEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,8 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CodeSandboxTest {

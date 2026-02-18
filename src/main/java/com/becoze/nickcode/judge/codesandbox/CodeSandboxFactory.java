@@ -1,8 +1,8 @@
-package com.becoze.nickcode.judeg.codesandbox;
+package com.becoze.nickcode.judge.codesandbox;
 
-import com.becoze.nickcode.judeg.codesandbox.impl.DemoCodeSandbox;
-import com.becoze.nickcode.judeg.codesandbox.impl.RemoteCodeSandbox;
-import com.becoze.nickcode.judeg.codesandbox.impl.ThirdPartyCodeSandbox;
+import com.becoze.nickcode.judge.codesandbox.impl.DemoCodeSandbox;
+import com.becoze.nickcode.judge.codesandbox.impl.RemoteCodeSandbox;
+import com.becoze.nickcode.judge.codesandbox.impl.ThirdPartyCodeSandbox;
 
 /**
  * CodeSandbox Factory. Create a specified code sandbox instance based on the String parameter input.

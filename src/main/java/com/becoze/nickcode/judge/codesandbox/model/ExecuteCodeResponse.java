@@ -1,6 +1,5 @@
-package com.becoze.nickcode.judeg.codesandbox.model;
+package com.becoze.nickcode.judge.codesandbox.model;
 
-import com.becoze.nickcode.model.dto.problem.JudgeConfig;
 import com.becoze.nickcode.model.dto.problemsubmit.JudgeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
