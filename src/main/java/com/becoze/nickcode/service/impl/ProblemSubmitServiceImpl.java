@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.becoze.nickcode.common.ErrorCode;
 import com.becoze.nickcode.constant.CommonConstant;
 import com.becoze.nickcode.exception.BusinessException;
+import com.becoze.nickcode.judge.JudgeService;
 import com.becoze.nickcode.mapper.ProblemSubmitMapper;
 import com.becoze.nickcode.model.dto.problemsubmit.ProblemSubmitAddRequest;
 import com.becoze.nickcode.model.dto.problemsubmit.ProblemSubmitQueryRequest;
@@ -22,10 +23,12 @@ import com.becoze.nickcode.service.UserService;
 import com.becoze.nickcode.utils.SqlUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -41,6 +44,10 @@ public class ProblemSubmitServiceImpl extends ServiceImpl<ProblemSubmitMapper, P
 
     @Resource
     private UserService userService;
+
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
 
     /**
      * Submit problem
@@ -82,7 +89,14 @@ public class ProblemSubmitServiceImpl extends ServiceImpl<ProblemSubmitMapper, P
         if (!save) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "Problem Submission error");
         }
-        return problemSubmit.getId();
+
+        Long problemSubmitId = problemSubmit.getId();
+        // Problem Judge service
+        CompletableFuture.runAsync(() -> {
+            judgeService.doJudge(problemSubmitId);
+        });
+
+        return problemSubmitId;
     }
 
     /**
