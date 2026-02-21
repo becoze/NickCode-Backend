@@ -72,7 +72,7 @@ public class Problem implements Serializable {
     private String judgeConfig;
 
     /**
-     * Id of the user user
+     * ID of the user
      */
     private Long userId;
 

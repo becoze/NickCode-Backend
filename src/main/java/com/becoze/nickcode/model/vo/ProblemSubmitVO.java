@@ -1,7 +1,7 @@
 package com.becoze.nickcode.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.becoze.nickcode.model.dto.problemsubmit.JudgeInfo;
+import com.becoze.nickcode.judge.codesandbox.model.JudgeInfo;
 import com.becoze.nickcode.model.entity.ProblemSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

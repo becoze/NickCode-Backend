@@ -1,4 +1,4 @@
-package com.becoze.nickcode.model.dto.problemsubmit;
+package com.becoze.nickcode.judge.codesandbox.model;
 
 import lombok.Data;
 
