@@ -13,7 +13,8 @@ public enum ErrorCode {
     NOT_FOUND_ERROR(40400, "Requested data not found"),
     FORBIDDEN_ERROR(40300, "Access forbidden"),
     SYSTEM_ERROR(50000, "Internal system error"),
-    OPERATION_ERROR(50001, "Operation failed");
+    OPERATION_ERROR(50001, "Operation failed"),
+    API_REQUEST_ERROR(50003, "Api request error");
 
     /**
      * 状态码
