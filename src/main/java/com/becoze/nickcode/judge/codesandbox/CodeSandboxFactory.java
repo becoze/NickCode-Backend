@@ -14,7 +14,7 @@ public class CodeSandboxFactory {
      * @param codeSandboxName
      * @return
      */
-    public static CodeSandbox createCodeSandboxInstance(String codeSandboxName) {
+    public static CodeSandbox newInstance(String codeSandboxName) {
         switch (codeSandboxName) {
             case "DemoCodeSandbox":
                 return new DemoCodeSandbox();

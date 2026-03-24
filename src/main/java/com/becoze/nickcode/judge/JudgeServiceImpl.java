@@ -71,7 +71,7 @@ public class JudgeServiceImpl implements JudgeService {
         }
 
         // Execute code using specific sandbox by config
-        CodeSandbox codeSandbox = CodeSandboxFactory.createCodeSandboxInstance(codeSandboxName);
+        CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(codeSandboxName);
         codeSandbox = new CodeSandboxProxy(codeSandbox);
         // Gather submission language and code information
         String language = problemSubmit.getLanguage();
