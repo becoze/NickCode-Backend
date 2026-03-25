@@ -8,6 +8,7 @@ import com.becoze.nickcode.model.entity.Problem;
 import com.becoze.nickcode.model.enums.JudgeInfoMessageEnum;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * DefaultJudgeStrategy implements the JudgeStrategy interface to provide a default judging mechanism.
@@ -25,8 +26,8 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
     public JudgeInfo doJudge(JudgeContext judgeContext) {
         // Extract user result information
         JudgeInfo userResult = judgeContext.getJudgeInfo();
-        Long userTimeUsed = userResult.getTime();
-        Long userMemoryUsed = userResult.getMemory();
+        Long userTimeUsed = Optional.ofNullable(userResult.getTime()).orElse(0L);
+        Long userMemoryUsed = Optional.ofNullable(userResult.getMemory()).orElse(0L);
         // Extract test case and input/output data
         List<String> inputList = judgeContext.getInputList();
         List<String> outputList = judgeContext.getOutputList();
