@@ -25,8 +25,9 @@ import javax.servlet.http.HttpServletRequest;
  * Problem submit
  */
 @RestController
-@RequestMapping("/problem_submit")
+//@RequestMapping("/problem_submit")
 @Slf4j
+@Deprecated
 public class ProblemSubmitController {
 
     @Resource
@@ -42,7 +43,7 @@ public class ProblemSubmitController {
      * @param request
      * @return submission ID
      */
-    @PostMapping("/")
+//    @PostMapping("/")
     public BaseResponse<Long> doProblemSubmit(@RequestBody ProblemSubmitAddRequest problemSubmitAddRequest,
                                               HttpServletRequest request) {
         // Problem ID con not be null
@@ -60,7 +61,7 @@ public class ProblemSubmitController {
      * @param problemSubmitQueryRequest
      * @return
      */
-    @PostMapping("/list/page")
+//    @PostMapping("/list/page")
     public BaseResponse<Page<ProblemSubmitVO>> listProblemSubmitByPage(@RequestBody ProblemSubmitQueryRequest problemSubmitQueryRequest,
                                                                        HttpServletRequest request) {
         long current = problemSubmitQueryRequest.getCurrent();

@@ -11,10 +11,15 @@ import com.becoze.nickcode.constant.UserConstant;
 import com.becoze.nickcode.exception.BusinessException;
 import com.becoze.nickcode.exception.ThrowUtils;
 import com.becoze.nickcode.model.dto.problem.*;
+import com.becoze.nickcode.model.dto.problemsubmit.ProblemSubmitAddRequest;
+import com.becoze.nickcode.model.dto.problemsubmit.ProblemSubmitQueryRequest;
 import com.becoze.nickcode.model.entity.Problem;
+import com.becoze.nickcode.model.entity.ProblemSubmit;
 import com.becoze.nickcode.model.entity.User;
+import com.becoze.nickcode.model.vo.ProblemSubmitVO;
 import com.becoze.nickcode.model.vo.ProblemVO;
 import com.becoze.nickcode.service.ProblemService;
+import com.becoze.nickcode.service.ProblemSubmitService;
 import com.becoze.nickcode.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -38,7 +43,9 @@ public class ProblemController {
     @Resource
     private UserService userService;
 
-    // region 增删改查
+    @Resource
+    private ProblemSubmitService problemSubmitService;
+
 
     /**
      * 创建
@@ -280,6 +287,44 @@ public class ProblemController {
         }
         boolean result = problemService.updateById(problem);
         return ResultUtils.success(result);
+    }
+
+    /**
+     * Submit problem
+     *
+     * @param problemSubmitAddRequest
+     * @param request
+     * @return submission ID
+     */
+    @PostMapping("/problem_submit/do")
+    public BaseResponse<Long> doProblemSubmit(@RequestBody ProblemSubmitAddRequest problemSubmitAddRequest,
+                                              HttpServletRequest request) {
+        // Problem ID con not be null
+        if (problemSubmitAddRequest == null || problemSubmitAddRequest.getProblemId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        final User loginUser = userService.getLoginUser(request);
+        long result = problemSubmitService.doProblemSubmit(problemSubmitAddRequest, loginUser);
+        return ResultUtils.success(result);
+    }
+
+    /**
+     * 分页获取 Submitted-problem 列表，查看所有人的提交记录的公开信息（仅管理员和当前用户，其他非管理员用户只能看见不包含代码答案等公开信息）
+     *
+     * @param problemSubmitQueryRequest
+     * @return
+     */
+    @PostMapping("/problem_submit/list/page")
+    public BaseResponse<Page<ProblemSubmitVO>> listProblemSubmitByPage(@RequestBody ProblemSubmitQueryRequest problemSubmitQueryRequest,
+                                                                       HttpServletRequest request) {
+        long current = problemSubmitQueryRequest.getCurrent();
+        long size = problemSubmitQueryRequest.getPageSize();
+        // Get all submitted problem page data
+        Page<ProblemSubmit> problemSubmitPage = problemSubmitService.page(new Page<>(current, size),
+                problemSubmitService.getQueryWrapper(problemSubmitQueryRequest));
+        // Return filtered info
+        final User loginUser = userService.getLoginUser(request);
+        return ResultUtils.success(problemSubmitService.getProblemSubmitVOPage(problemSubmitPage, loginUser));
     }
 
 }

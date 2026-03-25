@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/post_thumb")
 @Slf4j
+@Deprecated
 public class PostThumbController {
 
     @Resource
