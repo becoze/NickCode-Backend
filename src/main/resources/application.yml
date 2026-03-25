@@ -101,4 +101,4 @@ knife4j:
           - com.becoze.nickcode.controller
 # Code Sandbox config
 codesandbox:
-  codeSandboxName: DemoCodeSandbox # DemoCodeSandbox, RemoteCodeSandbox, ThirdPartyCodeSandbox
+  codeSandboxName: RemoteCodeSandbox # DemoCodeSandbox, RemoteCodeSandbox, ThirdPartyCodeSandbox
