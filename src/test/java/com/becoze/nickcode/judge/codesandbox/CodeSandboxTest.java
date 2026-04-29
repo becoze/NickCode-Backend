@@ -36,10 +36,16 @@ class CodeSandboxTest {
 
     @Test
     void executeCodeByProxy() {
-        CodeSandbox codeSandbox = CodeSandboxFactory.createCodeSandboxInstance(codeSandboxName);
+        CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(codeSandboxName);
         codeSandbox = new CodeSandboxProxy(codeSandbox);
 
-        String code = "int main() {}";
+        String code = "class Main {\n" +
+                "    public static void main(String[] args) {\n" +
+                "        int a = Integer.parseInt(args[0]);\n" +
+                "        int b = Integer.parseInt(args[1]);\n" +
+                "        System.out.println(\"Result: \" + (a + b));\n" +
+                "    }\n" +
+                "}";
         String language = ProblemSubmitLanguageEnum.JAVA.getValue();
         List<String> inputList = Arrays.asList("1 2", "3 4");
         ExecuteCodeRequest executeCodeRequest = ExecuteCodeRequest.builder()
@@ -53,7 +59,7 @@ class CodeSandboxTest {
 
     @Test
     void executeCodeByValue() {
-        CodeSandbox codeSandbox = CodeSandboxFactory.createCodeSandboxInstance(codeSandboxName);
+        CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(codeSandboxName);
         String code = "int main() {}";
         String language = ProblemSubmitLanguageEnum.JAVA.getValue();
         List<String> inputList = Arrays.asList("1 2", "3 4");
@@ -70,7 +76,7 @@ class CodeSandboxTest {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             String codeSandboxName = scanner.next();
-            CodeSandbox codeSandbox = CodeSandboxFactory.createCodeSandboxInstance(codeSandboxName);
+            CodeSandbox codeSandbox = CodeSandboxFactory.newInstance(codeSandboxName);
 
             String code = "int main() {}";
             String language = ProblemSubmitLanguageEnum.JAVA.getValue();
