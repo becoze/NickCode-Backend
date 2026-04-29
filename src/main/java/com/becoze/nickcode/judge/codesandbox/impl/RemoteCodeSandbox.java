@@ -13,7 +13,8 @@ public class RemoteCodeSandbox implements CodeSandbox {
     private static final String AUTH_REQUEST_KEY = "test";
     private static final String AUTH_REQUEST_HEADER = "auth";
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
-        String url = "http://localhost:8104/executeCode";
+        String url = "http://oj-code-sandbox:8104/executeCode";
+//        String url = "http://localhost:8104/executeCode";
         String json = JSONUtil.toJsonStr(executeCodeRequest);
         String responseStr = HttpUtil.createPost(url)
                 .header(AUTH_REQUEST_HEADER, AUTH_REQUEST_KEY)
