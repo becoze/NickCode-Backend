@@ -11,7 +11,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysql:3306/nickcode
+    url: "jdbc:mysql://mysql:3306/nickcode?sslMode=DISABLED&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
 mybatis-plus:
